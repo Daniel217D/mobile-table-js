@@ -23,6 +23,9 @@ class Tablichka {
         this.wrapper.appendChild(this.shadow_l);
         this.wrapper.appendChild(this.shadow_r);
 
+        this.resizeHandler();
+        this.scrollHandler();
+
         window.addEventListener('resize', this.resizeHandler.bind(this))
         this.wrapper.addEventListener('scroll', this.scrollHandler.bind(this))
     }
@@ -38,7 +41,22 @@ class Tablichka {
 
     scrollHandler = () => {
         this.shadow_l.style.left = this.wrapper.scrollLeft + 'px';
-        this.shadow_r.style.right = -this.wrapper.scrollLeft +'px'
+        this.shadow_r.style.right = -this.wrapper.scrollLeft +'px';
+
+        let shadow_r = this.options.table.offsetWidth - this.wrapper.offsetWidth-this.wrapper.scrollLeft;
+        if(shadow_r >= 45) {
+            this.shadow_r.style.boxShadow = "0 0 30px 15px black"
+        } else {
+            this.shadow_r.style.boxShadow = "0 0 30px "+shadow_r/3+"px black"
+        }
+
+        let shadow_l = this.wrapper.scrollLeft;
+        if(shadow_l >= 45) {
+            this.shadow_l.style.boxShadow = "0 0 30px 15px black"
+        } else {
+            this.shadow_l.style.boxShadow = "0 0 30px "+shadow_l/3+"px black"
+        }
+        console.log();
     }
 }
 
