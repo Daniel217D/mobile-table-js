@@ -1,8 +1,31 @@
 .tablichka {
+    position: relative;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
 
+    &_noshadow {
+        .tablichka-shadow {
+            display: none;
+        }
+    }
+
+    &-shadow {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background-color: red;
+        &_left {
+            left: 0;
+            box-shadow: 0 0 30px 10px black;
+        }
+
+        &_right {
+            right: 0;
+            box-shadow: 0 0 30px 10px black;
+        }
+    }
     table {
         width: 100%;
     }
