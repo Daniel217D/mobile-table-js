@@ -4,8 +4,8 @@
     overflow-x: auto;
     white-space: nowrap;
 
-    &_noshadow {
-        .tablichka-shadow {
+    &_noscroll {
+        .tablichka-shadow, .tablichka-info {
             display: none;
         }
     }
@@ -19,14 +19,38 @@
         transition: box-shadow .22s ;
         &_left {
             left: 0;
-            box-shadow: 0 0 30px 10px black;
         }
 
         &_right {
             right: 0;
-            box-shadow: 0 0 30px 10px black;
         }
     }
+
+    &-info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 5px;
+        background-color: #def0d8;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.51);
+        transition: left .1s;
+
+        kbd {
+            background-color: #eee;
+            border-radius: 3px;
+            border: 1px solid #b4b4b4;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+            color: #333;
+            display: inline-block;
+            font-size: .85em;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 4px;
+            white-space: nowrap;
+        }
+    }
+
     table {
         width: 100%;
     }

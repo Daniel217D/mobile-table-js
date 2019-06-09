@@ -1,4 +1,5 @@
 import './tablichka.scss'
+import is_mobile from './check-mobile'
 
 class Tablichka {
     constructor(options) {
@@ -23,6 +24,13 @@ class Tablichka {
         this.wrapper.appendChild(this.shadow_l);
         this.wrapper.appendChild(this.shadow_r);
 
+        if(! is_mobile()) {
+            this.info = document.createElement('div');
+            this.info.classList.add('tablichka-info');
+            this.info.innerHTML = "Use <kbd>shift</kbd> + mouse wheel <br> for scrolling";
+            this.wrapper.appendChild(this.info);
+        }
+
         this.resizeHandler();
         this.scrollHandler();
 
@@ -32,16 +40,24 @@ class Tablichka {
 
     resizeHandler = () => {
         if (this.wrapper.offsetWidth >= this.options.table.offsetWidth) {
-            this.wrapper.classList.add('tablichka_noshadow')
+            this.wrapper.classList.add('tablichka_noscroll')
         } else {
-            this.wrapper.classList.remove('tablichka_noshadow');
+            this.wrapper.classList.remove('tablichka_noscroll');
             this.scrollHandler();
         }
     };
 
     scrollHandler = () => {
         this.shadow_l.style.left = this.wrapper.scrollLeft + 'px';
-        this.shadow_r.style.right = -this.wrapper.scrollLeft +'px';
+        if (! is_mobile()) {
+            if(this.wrapper.scrollLeft > 0) {
+                this.info.style.left = '-100%';
+            } else {
+                this.info.style.removeProperty('left');
+            }
+        }
+
+        this.shadow_r.style.right = -this.wrapper.scrollLeft + 'px';
 
         let shadow_r = this.options.table.offsetWidth - this.wrapper.offsetWidth-this.wrapper.scrollLeft;
         if(shadow_r >= 45) {
