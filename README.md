@@ -1,1 +1,1 @@
-# mobile-table-js
+# tablichkajs
