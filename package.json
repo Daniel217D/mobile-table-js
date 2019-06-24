@@ -1,13 +1,13 @@
 {
-  "name": "mobile-table-js",
+  "name": "tablichkajs",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/Daniel217D/mobile-table-js.git",
   "author": "Daniel217D <daniel217032001@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "dev": "parcel index.html --global tablichka",
+    "build": "parcel build ./src/tablichka.js --no-content-hash --global tablichka"
   },
   "dependencies": {
     "parcel-bundler": "^1.12.3"
